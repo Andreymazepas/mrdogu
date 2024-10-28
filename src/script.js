@@ -94,7 +94,7 @@ world.gravity.set(0, -18, 0);
 world.allowSleep = true;
 
 const markerGeometry = new THREE.SphereGeometry(0.1, 32, 32);
-const markerMaterial = new THREE.MeshBasicMaterial({ color: 0xddddff });
+const markerMaterial = new THREE.MeshBasicMaterial({ color: 0xdfdfdf });
 clickMarker = new THREE.Mesh(markerGeometry, markerMaterial);
 clickMarker.visible = false;
 scene.add(clickMarker);
@@ -256,7 +256,7 @@ const playHitSound = (collision) => {
 
   if (impactStrength > 1) {
     hitSound.volume = Math.random();
-    hitSound.currentTime = 0;
+    hitSound.currentTime = 0.015;
     hitSound.play();
   }
 };
