@@ -129,7 +129,7 @@ const defaultContactMaterial = new CANNON.ContactMaterial(
   concreteMaterial,
   {
     friction: 0.1,
-    restitution: 0.5,
+    restitution: 0.6,
   }
 );
 world.addContactMaterial(defaultContactMaterial);
@@ -250,7 +250,7 @@ window.addEventListener('pointermove', (event) => {
   }
 });
 
-const hitSound = new Audio('/sounds/hit.mp3');
+const hitSound = new Audio('/sounds/Knock 2 by Audacitier.mp3');
 const playHitSound = (collision) => {
   const impactStrength = collision.contact.getImpactVelocityAlongNormal();
 
@@ -287,6 +287,9 @@ function moveMovementPlane(point, camera) {
 raycaster = new THREE.Raycaster();
 
 function getHitPoint(clientX, clientY, mesh, camera) {
+  if (!mesh) {
+    return;
+  }
   const mouse = new THREE.Vector2();
   mouse.x = (clientX / window.innerWidth) * 2 - 1;
   mouse.y = -((clientY / window.innerHeight) * 2 - 1);
