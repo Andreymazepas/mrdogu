@@ -90,7 +90,7 @@ glbLoader.load('/table/small_wooden_table_01_2k.gltf', (gltf) => {
 });
 
 const world = new CANNON.World();
-world.gravity.set(0, -18, 0);
+world.gravity.set(0, -40, 0);
 world.allowSleep = true;
 
 const markerGeometry = new THREE.SphereGeometry(0.1, 32, 32);
@@ -128,8 +128,8 @@ const defaultContactMaterial = new CANNON.ContactMaterial(
   defaultMaterial,
   concreteMaterial,
   {
-    friction: 0.1,
-    restitution: 0.6,
+    friction: 0.6,
+    restitution: 0.5,
   }
 );
 world.addContactMaterial(defaultContactMaterial);
@@ -148,7 +148,7 @@ const doguTopShape = new CANNON.Cylinder(
 );
 
 const doguBody = new CANNON.Body({
-  mass: 1,
+  mass: 10,
   position: new CANNON.Vec3(0, 2, 0),
 });
 
@@ -255,7 +255,7 @@ const playHitSound = (collision) => {
   const impactStrength = collision.contact.getImpactVelocityAlongNormal();
 
   if (impactStrength > 1) {
-    hitSound.volume = Math.random();
+    hitSound.volume = Math.min(impactStrength / 10, 1);
     hitSound.currentTime = 0.015;
     hitSound.play();
   }
