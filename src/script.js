@@ -9,7 +9,7 @@ import {
   RenderPass,
   ToneMappingEffect,
 } from 'postprocessing';
-import { RGBELoader } from 'three/examples/jsm/Addons.js';
+import { GroundedSkybox, RGBELoader } from 'three/examples/jsm/Addons.js';
 
 const gui = new GUI();
 gui.add(
@@ -61,8 +61,8 @@ hdrLoader.load('/textures/studio.hdr', (texture) => {
   environmentMapTexture = generator.fromEquirectangular(texture).texture;
   generator.dispose();
   scene.environment = environmentMapTexture;
-  scene.background = environmentMapTexture;
-  scene.backgroundBlurriness = 0.05;
+  const skybox = new GroundedSkybox(texture, 10, 30);
+  scene.add(skybox);
 });
 
 let dogu;
